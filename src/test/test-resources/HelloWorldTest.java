@@ -4,6 +4,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import tw.ymxing.HelloWorld;
 
 import java.io.PrintWriter;
 
@@ -22,14 +23,11 @@ public class HelloWorldTest {
         when(request.getMethod()).thenReturn("GET");
         response = mock(HttpServletResponse.class);
         when(response.getWriter()).thenReturn(out);
-
-
     }
 
    @Test
     public void doGetTest() throws Exception{
        servlet.service(request, response);
-//       assertEquals("HelloWorld!", response.getOutputStream());
        verify(out, times(1)).println("<html>");
     }
 }
