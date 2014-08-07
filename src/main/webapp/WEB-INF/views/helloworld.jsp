@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
-    <%@ page isELIgnored="false" %>
     <title>Hello World</title>
 </head>
 <body>
