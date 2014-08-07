@@ -1,0 +1,14 @@
+.classpath
+.gradle/
+.project
+.settings/
+todo-list.ipr
+todo-list.iws
+todo-list.ids
+build/
+*.iml
+*.swp
+out/
+target/
+.idea/
+bin
