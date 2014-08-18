@@ -1,0 +1,27 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-size: 30px;
+    background-image: url(../img/background.png);
+    background-size: contain;
+    background-color: whitesmoke;
+    text-align: left;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+div#todo{
+
+    position: relative;
+    margin-top: 200px;
+    margin-left: 500px;
+}
+div{
+
+    display: list-item;
+    list-style: none;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+
+

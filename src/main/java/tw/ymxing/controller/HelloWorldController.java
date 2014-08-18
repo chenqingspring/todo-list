@@ -1,4 +1,4 @@
-package tw.ymxing;
+package tw.ymxing.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +12,6 @@ public class HelloWorldController {
     @RequestMapping(method = RequestMethod.GET)
     public String hello(ModelMap model) {
         model.addAttribute("message", "Hello Spring MVC!");
-        return "helloworld";
+        return "todo";
     }
 }
