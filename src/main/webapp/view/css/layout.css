@@ -9,11 +9,14 @@ body{
     background-repeat: no-repeat;
     background-position: 50%;
 }
-div#todo{
-
-    position: relative;
+div#show-todo{
+    display: inline-block;
+    width: 300px;
+    height: auto;
+    background-color: rgba(128, 128, 128, 0.2);
     margin-top: 200px;
-    margin-left: 500px;
+    margin-left: 400px;
+    vertical-align: top;
 }
 div{
 
@@ -22,6 +25,15 @@ div{
     padding-top: 20px;
     padding-left: 10px;
 }
+div#add-todo{
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+    background-color: rgba(128, 128, 128, 0.2);
+    margin-top: 200px;
+    margin-left: 100px;
+}
+
 
 
 
