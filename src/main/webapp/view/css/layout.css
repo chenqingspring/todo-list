@@ -2,14 +2,11 @@ body{
     margin: 0px;
     padding: 0px;
     font-size: 30px;
-    background-image: url(../img/background.png);
-    background-size: contain;
-    background-color: whitesmoke;
     text-align: left;
-    background-repeat: no-repeat;
-    background-position: 50%;
+    background: whitesmoke url(../img/background.png) no-repeat 50%;
+    background-size: contain;
 }
-div#show-todo{
+#show-todo{
     display: inline-block;
     width: 300px;
     height: auto;
@@ -18,22 +15,23 @@ div#show-todo{
     margin-left: 400px;
     vertical-align: top;
 }
-div{
 
-    display: list-item;
-    list-style: none;
-    padding-top: 20px;
-    padding-left: 10px;
-}
-div#add-todo{
-    display: inline-block;
+#add-todo{
     width: 200px;
     height: 100px;
     background-color: rgba(128, 128, 128, 0.2);
     margin-top: 200px;
     margin-left: 100px;
 }
-
+div{
+    display: list-item;
+    list-style: none;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+form{
+    display: inline-block;
+}
 
 
 
