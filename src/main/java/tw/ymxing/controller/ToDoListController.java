@@ -13,7 +13,6 @@ import tw.ymxing.model.Item;
 public class ToDoListController {
 
     private ItemDAOImp itemDAOImp;
-
     @Autowired
     public ToDoListController(ItemDAOImp itemDAOImp){
         this.itemDAOImp=itemDAOImp;
@@ -21,15 +20,13 @@ public class ToDoListController {
 
     @RequestMapping(value = "/todo", method = RequestMethod.GET)
     public String showList(ModelMap model){
-        Item item=new Item();
-        item.setDescription("Pay bills");
-        itemDAOImp.addNewItem(item);
         model.addAttribute("Items",itemDAOImp.getAllItem());
         return "index";
         }
 
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     public String addToDoItem(@RequestParam("description") String inputItem,ModelMap model) {
+
         Item item=new Item();
         item.setDescription(inputItem);
         itemDAOImp.addNewItem(item);
