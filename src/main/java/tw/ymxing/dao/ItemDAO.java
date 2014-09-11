@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ItemDAO {
     public List<Item> getAllItem();
-    public void addNewItem(Item item);
+    public int addNewItem(Item item);
 }

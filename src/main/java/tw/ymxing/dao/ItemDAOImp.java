@@ -42,15 +42,15 @@ public class ItemDAOImp implements ItemDAO {
     }
 
     @Override
-    public void addNewItem(Item item) {
+    public int addNewItem(Item item) {
         try{
             Connection conn = dataSource.getConnection();
-            String sql="insert into todoList values ( \'"+item.getDescription()+"\')";
+            String sql="insert into todoList values (\'"+item.getDescription()+"\')";
             conn.createStatement().executeUpdate(sql);
             conn.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
+    return 1;
     }
-
 }
