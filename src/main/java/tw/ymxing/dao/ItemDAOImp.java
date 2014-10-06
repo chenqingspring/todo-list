@@ -10,25 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 @Component
 public class ItemDAOImp implements ItemDAO {
-
+    @Resource
     private DataSource dataSource;
 
-
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-    @Resource
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
     @Override
-    public List<Item> getAllItem() {
+    public List<Item> getAllItem(String username) {
         List ItemList=new ArrayList<Item>();
         try{
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs=stmt.executeQuery("select item from todoList");
+            ResultSet rs=stmt.executeQuery("select item from todoList where username = \'"+username+"\'");
             while (rs.next()){
                 Item item=new Item();
                 item.setDescription(rs.getString(1));
@@ -42,15 +33,14 @@ public class ItemDAOImp implements ItemDAO {
     }
 
     @Override
-    public int addNewItem(Item item) {
+    public void addNewItem(Item item) {
         try{
             Connection conn = dataSource.getConnection();
-            String sql="insert into todoList values (\'"+item.getDescription()+"\')";
+            String sql="insert into todoList values (\'"+item.getUsername()+"\',\'"+item.getDescription()+"\')";
             conn.createStatement().executeUpdate(sql);
             conn.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
-    return 1;
     }
 }

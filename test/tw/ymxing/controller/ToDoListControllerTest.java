@@ -33,7 +33,6 @@ public class ToDoListControllerTest {
         List ItemList=new ArrayList<Item>();
 
         when(mockItemDAOImp.getAllItem()).thenReturn(ItemList);
-        when(mockItemDAOImp.addNewItem(item)).thenReturn(1);
         this.mockMvc=MockMvcBuilders.standaloneSetup(new ToDoListController(mockItemDAOImp)).build();
 
     }

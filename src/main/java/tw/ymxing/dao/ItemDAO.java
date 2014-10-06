@@ -5,6 +5,6 @@ import tw.ymxing.model.Item;
 import java.util.List;
 
 public interface ItemDAO {
-    public List<Item> getAllItem();
-    public int addNewItem(Item item);
+    public List<Item> getAllItem(String username);
+    public void addNewItem(Item item);
 }

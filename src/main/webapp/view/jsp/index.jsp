@@ -16,6 +16,7 @@
 <form:form method="POST" action="/todo-list/addItem">
     <div id="add-todo">Add a item
         <input name="description" type="text"/>
+        <input name="username" type="hidden" value="${username}"/>
         <input type="submit"/>
     </div>
 </form:form>

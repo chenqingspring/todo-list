@@ -1,9 +1,16 @@
 package tw.ymxing.model;
 
-/**
- * Created by ymxing on 8/19/14.
- */
 public class Item {
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     private String description;
 
     public void setDescription(String description) {

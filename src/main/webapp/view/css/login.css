@@ -1,0 +1,24 @@
+#user-login {
+    width: 250px;
+    height: 400px;
+    margin-top: 10%;
+    margin-left: 40%;
+    background-color: rgba(128, 128, 128, 0.5);
+    padding-top: 30px;
+    padding-left: 80px;
+}
+p {
+    font-size: 30;
+}
+#username {
+padding-top: 70px;
+}
+#password,.password {
+padding-top: 30px;
+}
+button {
+    margin-top: 40px;
+    margin-right: 60px;
+    margin-left: 10px;
+
+}

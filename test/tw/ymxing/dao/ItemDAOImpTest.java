@@ -36,14 +36,14 @@ public class ItemDAOImpTest {
     itemDaoImp.setDataSource(dataSource);
     when(dataSource.getConnection()).thenReturn(connection);
     when(connection.createStatement()).thenReturn(statement);
-    when(statement.executeQuery("select item from todoList")).thenReturn(resultSet);
+    when(statement.executeQuery(anyString())).thenReturn(resultSet);
     when(item.getDescription()).thenReturn("Do homework");
 }
 
     @Test
     public void getAllItemTest() throws Exception{
         itemDaoImp.getAllItem();
-        verify(statement,times(1)).executeQuery("select item from todoList");
+        verify(statement,times(1)).executeQuery(anyString());
     }
 
 
@@ -51,6 +51,6 @@ public class ItemDAOImpTest {
     @Test
     public void addNewItemTest() throws Exception{
         itemDaoImp.addNewItem(item);
-        verify(statement,times(1)).executeUpdate("insert into todoList values ('Do homework')");
+        verify(statement,times(1)).executeUpdate(anyString());
     }
 }
