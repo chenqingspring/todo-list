@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 @Component
-public class AccountDAOImp {
+public class AccountDAOImp implements AccountDAO {
     @Resource
     private DataSource dataSource;
     public boolean hasAccount(String username) {
@@ -38,5 +38,9 @@ public class AccountDAOImp {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

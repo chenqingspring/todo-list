@@ -57,10 +57,5 @@ public class ToDoListController {
         return false;
     }
 
-    @RequestMapping(value = "/Register", method = RequestMethod.GET)
-    public String Register() {
-
-        return "register";
-    }
 }
 

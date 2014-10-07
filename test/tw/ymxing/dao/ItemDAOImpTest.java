@@ -42,7 +42,8 @@ public class ItemDAOImpTest {
 
     @Test
     public void getAllItemTest() throws Exception{
-        itemDaoImp.getAllItem();
+        String username="minmin";
+        itemDaoImp.getAllItem(username);
         verify(statement,times(1)).executeQuery(anyString());
     }
 

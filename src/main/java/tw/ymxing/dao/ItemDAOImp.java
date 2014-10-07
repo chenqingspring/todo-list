@@ -43,4 +43,8 @@ public class ItemDAOImp implements ItemDAO {
             e.printStackTrace();
         }
     }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 }
