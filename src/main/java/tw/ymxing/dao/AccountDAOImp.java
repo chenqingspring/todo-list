@@ -1,6 +1,7 @@
 package tw.ymxing.dao;
 
 import org.springframework.stereotype.Component;
+import tw.ymxing.model.Account;
 
 import javax.sql.DataSource;
 import javax.annotation.Resource;
@@ -39,6 +40,17 @@ public class AccountDAOImp implements AccountDAO {
         }
         return null;
     }
+
+    public void addAccount(Account account){
+        try{
+            Connection conn = dataSource.getConnection();
+            String sql="insert into accounts values (\'"+account.getUsername()+"\',\'"+account.getPassword()+"\')";
+            conn.createStatement().executeUpdate(sql);
+            conn.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    };
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;

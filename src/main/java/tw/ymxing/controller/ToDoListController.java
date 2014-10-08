@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import tw.ymxing.dao.AccountDAOImp;
 import tw.ymxing.dao.ItemDAOImp;
+import tw.ymxing.model.Account;
 import tw.ymxing.model.Item;
 
 @Controller
@@ -40,7 +41,7 @@ public class ToDoListController {
     }
 
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
-    public String Login(@RequestParam("username") String username,
+    public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,ModelMap model) {
         if(varify(username,password)){
             model.addAttribute("username",username);
@@ -57,5 +58,24 @@ public class ToDoListController {
         return false;
     }
 
+    @RequestMapping(value = "/Register", method = RequestMethod.GET)
+    public String register() {
+        return "register";
+    }
+
+    @RequestMapping(value = "/addAccount", method = RequestMethod.POST)
+    public String addAnAccount(@RequestParam("username") String username,
+                               @RequestParam("pwfirst") String passwordfirst,
+                               @RequestParam("pwsecond") String passwordsecond,ModelMap model) {
+        model.addAttribute("username",username);
+        if(passwordfirst.equals(passwordsecond)){
+            Account account=new Account();
+            account.setUsername(username);
+            account.setPassword(passwordfirst);
+            accountDAOImp.addAccount(account);
+        }
+        model.addAttribute("Items",null);
+        return "index";
+    }
 }
 

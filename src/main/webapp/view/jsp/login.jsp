@@ -11,8 +11,10 @@
     <div id="user-login"><p>User Login</p>
         <div id="username"><label>Username</label><input name="username" type="text"/></div>
         <div id="password"><label>Password</label><input name="password" type="password"/></div>
-        <button type="submit">login</button><button >register</button>
+        <button type="submit" class="button">login</button>
+        <a href="Register" class="button">register</a>
     </div>
 </form:form>
+
 </body>
 </html>
