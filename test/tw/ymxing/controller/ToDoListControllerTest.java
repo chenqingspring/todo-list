@@ -58,7 +58,6 @@ public class ToDoListControllerTest {
                 .andExpect(status().is(200))
                 .andExpect(MockMvcResultMatchers.model().attributeExists("Items"))
                 .andReturn();
-        Assert.assertNotNull(mvcResult.getModelAndView().getModel().get("Items"));
     }
 
     @Test
@@ -71,8 +70,6 @@ public class ToDoListControllerTest {
         verify(mockAccountDAOImp,times(1)).hasAccount("minmin");
         verify(mockAccountDAOImp,times(1)).itsPassword("minmin");
         mvcResult.getModelAndView().getViewName().equals("index");
-        Assert.assertNotNull(mvcResult.getModelAndView().getModel().get("Items"));
-        Assert.assertNotNull(mvcResult.getModelAndView().getModel().get("username"));
     }
 
     @Test
@@ -86,6 +83,20 @@ public class ToDoListControllerTest {
         mvcResult.getModelAndView().getViewName().equals("error");
     }
 
+    @Test
+    public void shouldAcceptRegisertUrl() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/Register"))
+                .andExpect(status().is(200));
+    }
+
+    @Test
+    public void shouldAcceptAddAccountUrl() throws Exception {
+        MvcResult mvcResult=mockMvc.perform(MockMvcRequestBuilders.post("/addAccount?username=minmin&pwfirst=aaa&pwsecond=aaa"))
+                .andExpect(status().is(200))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("username"))
+                .andReturn();
+        Assert.assertNull(mvcResult.getModelAndView().getModel().get("Items"));
+    }
     //  if the function "verify(,)" of ToDoListController is public ,we can use following tests to checked it.
 
     /*@Test

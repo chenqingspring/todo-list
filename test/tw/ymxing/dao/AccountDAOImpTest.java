@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import tw.ymxing.model.Account;
 import tw.ymxing.model.Item;
 
 import javax.sql.DataSource;
@@ -31,6 +32,8 @@ public class AccountDAOImpTest {
     ResultSet resultSet;
     @Mock
     Item item;
+    @Mock
+    Account account;
 
     @Before
     public void setUp() throws Exception{
@@ -61,5 +64,11 @@ public class AccountDAOImpTest {
     public void shouldGetTheNotNullPassword() throws Exception {
         accountDAOImp.itsPassword("a");
         verify(statement,times(1)).executeQuery(anyString());
+    }
+
+    @Test
+    public void addNewAccountTest() throws Exception{
+        accountDAOImp.addAccount(account);
+        verify(statement,times(1)).executeUpdate(anyString());
     }
 }
