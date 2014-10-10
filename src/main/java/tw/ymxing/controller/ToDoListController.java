@@ -32,6 +32,7 @@ public class ToDoListController {
         item.setUsername(username);
         itemDAOImp.addNewItem(item);
         model.addAttribute("Items",itemDAOImp.getAllItem(username));
+        model.addAttribute("username",username);
         return "index";
     }
 
