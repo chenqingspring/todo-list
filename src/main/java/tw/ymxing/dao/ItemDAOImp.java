@@ -1,14 +1,17 @@
 package tw.ymxing.dao;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import tw.ymxing.model.Item;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-@Component
+@Repository
 public class ItemDAOImp implements ItemDAO {
     @Resource
     private DataSource dataSource;

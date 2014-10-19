@@ -1,9 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-<head>
-    <title>Todo Something</title>
-    <link href="view/css/login.css"  rel="stylesheet" type="text/css"/>
-</head>
+<c:import url="head.jsp" />
 
 <body>
 

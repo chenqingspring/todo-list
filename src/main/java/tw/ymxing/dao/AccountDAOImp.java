@@ -1,15 +1,15 @@
 package tw.ymxing.dao;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import tw.ymxing.model.Account;
 
-import javax.sql.DataSource;
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-@Component
+@Repository
 public class AccountDAOImp implements AccountDAO {
     @Resource
     private DataSource dataSource;

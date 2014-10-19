@@ -6,33 +6,26 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import tw.ymxing.dao.AccountDAOImp;
-import tw.ymxing.dao.ItemDAOImp;
-import tw.ymxing.model.Account;
-import tw.ymxing.model.Item;
+import tw.ymxing.services.AccountService;
+import tw.ymxing.services.ItemService;
 
 @Controller
 public class ToDoListController {
 
-    private ItemDAOImp itemDAOImp;
-    private AccountDAOImp accountDAOImp;
+    private final ItemService itemService;
+    private final AccountService accountService;
     @Autowired
-    public ToDoListController(ItemDAOImp itemDAOImp,AccountDAOImp accountDAOImp)
+    public ToDoListController(ItemService itemService,AccountService accountService)
     {
-        this.itemDAOImp = itemDAOImp;
-        this.accountDAOImp = accountDAOImp;
+        this.itemService=itemService;
+        this.accountService=accountService;
     }
 
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     public String addToDoItem(@RequestParam("description") String inputItem,@RequestParam("username")String username,
                               ModelMap model) {
 
-        Item item=new Item();
-        item.setDescription(inputItem);
-        item.setUsername(username);
-        itemDAOImp.addNewItem(item);
-        model.addAttribute("Items",itemDAOImp.getAllItem(username));
-        model.addAttribute("username",username);
+        itemService.addItem(inputItem, username, model);
         return "index";
     }
 
@@ -44,19 +37,8 @@ public class ToDoListController {
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,ModelMap model) {
-        if(varify(username,password)){
-            model.addAttribute("username",username);
-            model.addAttribute("Items",itemDAOImp.getAllItem(username));
-            return "index";
-        }
+        if (accountService.varifyLogin(username, password, model)) return "index";
         return "error";
-    }
-
-    private boolean varify(String username, String password) {
-        if(accountDAOImp.hasAccount(username)){
-            if(password.equals(accountDAOImp.itsPassword(username))) return true;
-        }
-        return false;
     }
 
     @RequestMapping(value = "/Register", method = RequestMethod.GET)
@@ -68,14 +50,7 @@ public class ToDoListController {
     public String addAnAccount(@RequestParam("username") String username,
                                @RequestParam("pwfirst") String passwordfirst,
                                @RequestParam("pwsecond") String passwordsecond,ModelMap model) {
-        model.addAttribute("username",username);
-        if(passwordfirst.equals(passwordsecond)){
-            Account account=new Account();
-            account.setUsername(username);
-            account.setPassword(passwordfirst);
-            accountDAOImp.addAccount(account);
-        }
-        model.addAttribute("Items",null);
+        accountService.addAccount(username, passwordfirst, passwordsecond, model);
         return "index";
     }
 }
