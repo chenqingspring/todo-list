@@ -38,7 +38,6 @@ public class AccountDAOImpTest {
     @Before
     public void setUp() throws Exception{
         accountDAOImp=new AccountDAOImp();
-        accountDAOImp.setDataSource(dataSource);
         when(dataSource.getConnection()).thenReturn(connection);
         when(connection.createStatement()).thenReturn(statement);
         when(statement.executeQuery(anyString())).thenReturn(resultSet);

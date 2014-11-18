@@ -1,53 +1,50 @@
 package tw.ymxing.dao;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Repository;
 import tw.ymxing.model.Item;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 @Repository
-public class ItemDAOImp implements ItemDAO {
-    @Resource
-    private DataSource dataSource;
-
-    @Override
+public class ItemDAOImp {
+    private static SqlSessionFactory sqlSessionFactory;
+    private static Reader reader;
+    static {
+        try {
+            reader = Resources.getResourceAsReader("SqlMapConfig.xml");
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            sqlSessionFactory.getConfiguration().addMapper(ItemMapper.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public List<Item> getAllItem(String username) {
-        List ItemList=new ArrayList<Item>();
-        try{
-            Connection conn = dataSource.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs=stmt.executeQuery("select item from todoList where username = \'"+username+"\'");
-            while (rs.next()){
-                Item item=new Item();
-                item.setDescription(rs.getString(1));
-                ItemList.add(item);
-            }
-            conn.close();
-        }catch (SQLException e){
-            e.printStackTrace();
+        List itemList=new ArrayList<Item>();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            ItemMapper itemMapper = session.getMapper(ItemMapper.class);
+            itemList = itemMapper.getAllItem(username);
+        } finally {
+            session.close();
         }
-        return ItemList;
+        return itemList;
     }
 
-    @Override
     public void addNewItem(Item item) {
-        try{
-            Connection conn = dataSource.getConnection();
-            String sql="insert into todoList values (\'"+item.getUsername()+"\',\'"+item.getDescription()+"\')";
-            conn.createStatement().executeUpdate(sql);
-            conn.close();
-        }catch (SQLException e){
-            e.printStackTrace();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            ItemMapper itemMapper = session.getMapper(ItemMapper.class);
+            itemMapper.addNewItem(item);
+            session.commit();
+        } finally {
+            session.close();
         }
     }
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 }

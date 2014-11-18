@@ -33,7 +33,6 @@ public class ItemDAOImpTest {
     @Before
     public void setUp() throws Exception{
     itemDaoImp=new ItemDAOImp();
-    itemDaoImp.setDataSource(dataSource);
     when(dataSource.getConnection()).thenReturn(connection);
     when(connection.createStatement()).thenReturn(statement);
     when(statement.executeQuery(anyString())).thenReturn(resultSet);
