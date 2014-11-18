@@ -13,6 +13,11 @@ import java.io.Reader;
 public class AccountDAOImp {
     private static SqlSessionFactory sqlSessionFactory;
     private static Reader reader;
+
+    public static void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        AccountDAOImp.sqlSessionFactory = sqlSessionFactory;
+    }
+
     static {
         try {
             reader = Resources.getResourceAsReader("SqlMapConfig.xml");
@@ -33,6 +38,7 @@ public class AccountDAOImp {
             session.close();
         }
     }
+
     public boolean hasAccount(String username) {
         SqlSession session = sqlSessionFactory.openSession();
         try{

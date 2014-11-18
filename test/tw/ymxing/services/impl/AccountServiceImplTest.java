@@ -71,7 +71,6 @@ public class AccountServiceImplTest {
         Assert.assertFalse(accountService.varifyLogin("minmin", "aaa", mockModel));
         verify(mockModel,times(0)).addAttribute("username","minmin");
         verify(mockModel,times(0)).addAttribute("Items",ItemList);
-
     }
 
 }

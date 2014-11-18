@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.ModelMap;
-import tw.ymxing.model.Item;
 import tw.ymxing.services.impl.AccountServiceImpl;
 import tw.ymxing.services.impl.ItemServiceImpl;
 
@@ -33,7 +32,6 @@ public class ToDoListControllerTest {
         this.mockMvc=MockMvcBuilders.standaloneSetup(new ToDoListController(mockItemServiceImpl, mockAccountServiceImpl)).build();
     }
 
-
     @Test
     public void shouldAcceptShowListUrl() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/homePage"))
@@ -53,8 +51,6 @@ public class ToDoListControllerTest {
         MvcResult mvcResult=mockMvc.perform(MockMvcRequestBuilders.post("/Login?username=minmin&password=aaa"))
                 .andExpect(status().is(200))
                 .andReturn();
-//        verify(mockAccountDAOImp,times(1)).hasAccount("minmin");
-//        verify(mockAccountDAOImp,times(1)).itsPassword("minmin");
         verify(mockAccountServiceImpl,times(1)).varifyLogin(anyString(),anyString(), (ModelMap) anyObject());
         assertEquals("index" , mvcResult.getModelAndView().getViewName());
     }
@@ -65,8 +61,6 @@ public class ToDoListControllerTest {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/Login?username=minmin&password=bbb"))
                 .andExpect(status().is(200))
                 .andReturn();
-//        verify(mockAccountDAOImp,times(1)).hasAccount("minmin");
-//        verify(mockAccountDAOImp,times(1)).itsPassword("minmin");
         verify(mockAccountServiceImpl,times(1)).varifyLogin(anyString(),anyString(), (ModelMap) anyObject());
         assertEquals("error" , mvcResult.getModelAndView().getViewName());
     }

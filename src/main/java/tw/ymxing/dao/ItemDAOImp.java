@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class ItemDAOImp {
+
     private static SqlSessionFactory sqlSessionFactory;
     private static Reader reader;
     static {
@@ -24,6 +25,11 @@ public class ItemDAOImp {
             e.printStackTrace();
         }
     }
+
+    public static void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        ItemDAOImp.sqlSessionFactory = sqlSessionFactory;
+    }
+
     public List<Item> getAllItem(String username) {
         List itemList=new ArrayList<Item>();
         SqlSession session = sqlSessionFactory.openSession();
